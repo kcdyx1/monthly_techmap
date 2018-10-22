@@ -64,6 +64,7 @@ def get_source(fsen):
 
 
 def main(month):
+    # month为要分析的月份，数值
     shuxian = "|"
     with open('./1808/r_aug.txt', 'r') as fj:
         lines = fj.readlines()
@@ -89,6 +90,8 @@ def main(month):
 
 if __name__ == '__main__':
     main(8)
+
+
 
 # 测试用代码
 # a = "据Phys网8月1日消息，日本财务省于8月31日截止了各省厅2019年度的预算申请，"
