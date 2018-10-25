@@ -1,3 +1,16 @@
+'''
+ * @Author: KangChen
+ * @Date: 2018-10-16 14:05:22
+ * @LastEditors: KangChen
+ * @LastEditTime: 2018-10-16 14:06:58
+ * @FindMe: https://github.com/kcdyx1
+'''
+
+import jieba
+from functools import reduce
+# from need_list import nation_list, us_kw, uk_kw, cn_kw, jp_kw, ru_kw, kr_kw, ge_kw
+
+
 # 世界国家列表，约252个
 nation_list = ['阿富汗',
                '奥兰群岛',
@@ -48,135 +61,106 @@ ca_pattern = r'\u52a0\u62ff\u5927'  # 加拿大
 au_pattern = r'\u6fb3\u5927\u5229\u4e9a'  # 澳大利亚
 jp_pattern = r'\u65e5\u672c'  # 日本
 kr_pattern = r'\u97e9\u56fd'  # 韩国
-sg_pattern = r'\u65b0\u52a0\u5761'  # 新加坡
 ru_pattern = r'\u4fc4\u7f57\u65af'  # 俄罗斯
 id_pattern = r'\u5370\u5ea6'  # 印度
 is_pattern = r'\u4ee5\u8272\u5217'  # 以色列
-ch_pattern = r'\u745e\u58eb'  # 瑞士
-se_pattern = r'\u745e\u58eb'  # 瑞典
-dk_pattern = r'\u4e39\u9ea6'  # 丹麦
-nl_pattern = r'\u8377\u5170'  # 荷兰
-fi_pattern = r'\u82ac\u5170'  # 芬兰
-pl_pattern = r'\u6ce2\u5170'  # 波兰
-es_pattern = r'\u897f\u73ed\u7259'  # 西班牙
-at_pattern = r'\u5965\u5730\u5229'  # 奥地利
-it_pattern = r'\u610f\u5927\u5229'  # 意大利
-qa_pattern = r'\u5361\u5854\u5c14'  # 卡塔尔
-ir_pattern = r'\u4f0a\u6717'  # 伊朗
-sa_pattern = r'\u6c99\u7279|\u6c99\u7279\u963f\u62c9\u4f2f'  # 沙特阿拉伯
-br_pattern = r'\u5df4\u897f'  # 巴西
 in_pattern = r'\u56fd\u9645|\u8054\u5408\u56fd'  # 国际
 
-nation_dict = {
-    'us': {
-        'name': 'United States',
-        'pattern': r'\u7f8e\u56fd'
-    },
-    'cn': {
-        'name': 'China',
-        'pattern': r'\u4e2d\u56fd'
-    },
-    'uk': {
-        'name': 'United Kingdom',
-        'pattern': r'\u82f1\u56fd'
-    },
-    'fr': {
-        'name': 'France',
-        'pattern': r'\u6cd5\u56fd'
-    },
-    'ge': {
-        'name': 'Germany',
-        'pattern': r'\u5fb7\u56fd'
-    },
-    'ca': {
-        'name': 'Canada',
-        'pattern': r'\u52a0\u62ff\u5927'
-    },
-    'au': {
-        'name': 'Australia',
-        'pattern': r'\u6fb3\u5927\u5229\u4e9a'
-    },
-    'jp': {
-        'name': 'Japan',
-        'pattern': r'\u65e5\u672c'
-    },
-    'kr': {
-        'name': 'Korea',
-        'pattern': r'\u97e9\u56fd'
-    },
-    'sg': {
-        'name': 'Singapore',
-        'pattern': r'\u65b0\u52a0\u5761'
-    },
-    'ru': {
-        'name': 'Russia',
-        'pattern': r'\u4fc4\u7f57\u65af'
-    },
-    'id': {
-        'name': 'India',
-        'pattern': r'\u5370\u5ea6'
-    },
-    'is': {
-        'name': 'Israel',
-        'pattern': r'\u4ee5\u8272\u5217'
-    },
-    'ch': {
-        'name': 'Switzerland',
-        'pattern': r'\u745e\u58eb'
-    },
-    'se': {
-        'name': 'Sweden',
-        'pattern': r'\u745e\u58eb'},
-    'dk': {
-        'name': 'Denmark',
-        'pattern': r'\u4e39\u9ea6'
-    },
-    'nl': {
-        'name': 'Netherlands',
-        'pattern': r'\u8377\u5170'
-    },
-    'fi': {
-        'name': 'Finland',
-        'pattern': r'\u82ac\u5170'
-    },
-    'pl': {
-        'name': 'Poland',
-        'pattern': r'\u6ce2\u5170'
-    },
-    'es': {
-        'name': 'Spain',
-        'pattern': r'\u897f\u73ed\u7259'
-    },
-    'at': {
-        'name': 'Austria',
-        'pattern': r'\u5965\u5730\u5229'
-    },
-    'it': {
-        'name': 'Italy',
-        'pattern': r'\u610f\u5927\u5229'
-    },
-    'qa': {
-        'name': 'Qatar',
-        'pattern': r'\u5361\u5854\u5c14'
-    },
-    'ir': {
-        'name': 'Iran',
-        'pattern': r'\u4f0a\u6717'
-    },
-    'sa': {
-        'name': 'Saudi Arabia',
-        'pattern': r'\u6c99\u7279|\u6c99\u7279\u963f\u62c9\u4f2f'
-    },
-    'br': {
-        'name': 'Brazil',
-        'pattern': r'\u5df4\u897f'
-    },
-    'in': {
-        'name': 'International',
-        'pattern': r'\u56fd\u9645|\u8054\u5408\u56fd'
-    },
-    'eu': {
-        'name': 'European Union',
-        'pattern': r'\u6b27[\u76df|\u6d32]?'
-    }
-}
+
+def fenci(wenben):
+    '''
+    采用全模式分词，粒度更细
+    :wenben: 待分词的文本
+    :returns: 分词列表
+    '''
+    seg_list = jieba.lcut_for_search(wenben)
+    return seg_list
+
+
+def get_nation_d(fenci_list):
+    '''
+    直接获取国家名称
+    :fenci_list: list
+    :nas: list
+    '''
+    head = fenci_list[:15]
+    nas = []
+    # print(head)
+    for i in head:
+        if i in nation_list and i not in nas:
+            nas.append(i)
+    return nas
+
+
+def get_nation_ind(fenci_list):
+    '''
+    在没有直接出现国家名称时，用某些关键词来推断，并分类
+
+    '''
+    nas = []
+    for i in fenci_list[:3]:
+        if i == '美':
+            nas.append('美国')
+        if i == '中':
+            nas.append('中国')
+        if i == '英':
+            nas.append('英国')
+        if i == '法':
+            nas.append('法国')
+        if i == '俄':
+            nas.append('俄罗斯')
+        if i == '澳':
+            nas.append('澳大利亚')
+        if i == '德':
+            nas.append('德国')
+    if nas:
+        return nas
+    else:
+        for i in fenci_list[:30]:
+            if i in us_kw:
+                nas.append('美国')
+            if i in cn_kw:
+                nas.append('中国')
+            if i in ru_kw:
+                nas.append('俄罗斯')
+            if i in uk_kw:
+                nas.append('英国')
+            if i in jp_kw:
+                nas.append('日本')
+            if i in kr_kw:
+                nas.append('韩国')
+            if i in ge_kw:
+                nas.append('德国')
+        return nas
+
+def manual(kw_list):
+    print(kw_list[:30])
+    nas = [input("请根据关键词输入国别: \n")]
+    if nas:
+        return nas
+
+
+def foo(text):
+    '''
+    国家提取入口，先做分词，
+    然后用关键词直接提取，
+    不行就用规则，
+    再不行就手动输入！
+    '''
+    res = fenci(text)
+    zhijie = get_nation_d(res)
+    if zhijie:
+        pullout = zhijie
+    else:
+        jianjie = get_nation_ind(res)
+        if jianjie:
+            pullout = jianjie
+        else:
+            pullout = manual(res)
+    
+    # 对列表进行去重，用reduce函数，必须用"from functools import reduce"导入
+    pullout = reduce(lambda x, y: x if y in x else x + [y], [[], ] + pullout)
+    return pullout
+
+# if __name__ == '__main__':
+#     aha('中国')

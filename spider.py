@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 import datetime
 import json
 import re
-from urls import aug_urls
+from urls import sep_urls
 
 
 def get_wxwenzhang(url):
@@ -86,7 +86,7 @@ def data_fenlei(cleandata):
 
 def main():
     # 程序主入口
-    for u in aug_urls:
+    for u in sep_urls:
         # 注意选择相应的URL列表
         ps = get_wxwenzhang(u)
         nr = get_neirong(ps)

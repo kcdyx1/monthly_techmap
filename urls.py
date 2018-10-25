@@ -47,3 +47,29 @@ aug_urls = [
     "https://mp.weixin.qq.com/s/u6_1jLQ7EKVdN0YDZmsCCQ",
     "https://mp.weixin.qq.com/s/uZHrNOC5cJ8vsnDz99mz9Q"
 ]
+
+sep_urls = [
+    "https://mp.weixin.qq.com/s/u6_1jLQ7EKVdN0YDZmsCCQ",
+    "https://mp.weixin.qq.com/s/uZHrNOC5cJ8vsnDz99mz9Q",
+    "https://mp.weixin.qq.com/s/E0Ygl_6Rf44Voj4E9VoU5Q",
+    "https://mp.weixin.qq.com/s/mTgNo9MtofhKH6fr3z7KDA",
+    "https://mp.weixin.qq.com/s/glPk6oSe84kqYwSPQBfKjQ",
+    "https://mp.weixin.qq.com/s/RpmPswmiHjfIqbHYI9DxEQ",
+    "https://mp.weixin.qq.com/s/jEuuInV8ypJ08NJyzIhjAw",
+    "https://mp.weixin.qq.com/s/X41s2Qyjj4G6Qjrtm3wg2Q",
+    "https://mp.weixin.qq.com/s/H9pFblkVoqWe-n633pizOA",
+    "https://mp.weixin.qq.com/s/UiBSE67xRdEhs8Uk_2UDgQ",
+    "https://mp.weixin.qq.com/s/mRwFgv5FCP4oP3oyQlCwHg",
+    "https://mp.weixin.qq.com/s/LGE8NOcXLnBFaPd4CrykNw",
+    "https://mp.weixin.qq.com/s/tw1oCQJC3nXsoyHOnCBQBA",
+    "https://mp.weixin.qq.com/s/RMjL7LHXaooZ-8R29t4Png",
+    "https://mp.weixin.qq.com/s/mO29Bt8tksyGl9KrdAJ3bg",
+    "https://mp.weixin.qq.com/s/yZfS0WjJxOAlxCgOfJYIyg",
+    "https://mp.weixin.qq.com/s/ZFYee6OOVqE2rWVEjn5iUA",
+    "https://mp.weixin.qq.com/s/u4NBoyZESOalk6kMc6eKEQ",
+    "https://mp.weixin.qq.com/s/NsFIHiE3qxsQWyhGg6Xr6A",
+    "https://mp.weixin.qq.com/s/ahDRXbeMxHIlOLpl3rZOIA",
+    "https://mp.weixin.qq.com/s/_I8lBVQcZvXazPFi2ijssA",
+    "https://mp.weixin.qq.com/s/-NezVxgIKAef-Acs9eZGDw"
+]
+

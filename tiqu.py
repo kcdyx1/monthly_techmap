@@ -1,11 +1,10 @@
-##----------
-# @Author: KangChen
-# @Date: 2018-10-04 11:19:08
-# @LastEditors: KangChen
-# @LastEditTime: 2018-10-04 11:19:08
-# @Description:
-# @FindMe: https://github.com/kcdyx1
-##----------
+'''
+* @Author: KangChen
+* @Date: 2018-10-22 15:32:21
+* @LastEditors: KangChen
+* @LastEditTime: 2018-10-22 15:47:05
+* @FindMe: https://github.com/kcdyx1
+'''
 
 import re
 
@@ -66,7 +65,7 @@ def get_source(fsen):
 def main(month):
     # month为要分析的月份，数值
     shuxian = "|"
-    with open('./1808/r_aug.txt', 'r') as fj:
+    with open('./1809/9yue_all.csv', 'r') as fj:
         lines = fj.readlines()
         print("title|content|field|source|date|content_clean")
         for line in lines:
@@ -89,12 +88,4 @@ def main(month):
 
 
 if __name__ == '__main__':
-    main(8)
-
-
-
-# 测试用代码
-# a = "据Phys网8月1日消息，日本财务省于8月31日截止了各省厅2019年度的预算申请，"
-# b = get_source(a)
-# c = get_date(a)
-# print(b, c)
+    main(9)
