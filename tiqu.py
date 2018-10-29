@@ -1,3 +1,4 @@
+from pyecharts import online
 '''
 * @Author: KangChen
 * @Date: 2018-10-22 15:32:21
@@ -89,3 +90,4 @@ def main(month):
 
 if __name__ == '__main__':
     main(9)
+

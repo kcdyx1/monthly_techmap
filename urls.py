@@ -1,4 +1,5 @@
 
+from pyecharts import online
 urls = [
     "https://mp.weixin.qq.com/s/u6_1jLQ7EKVdN0YDZmsCCQ",
     "https://mp.weixin.qq.com/s/uZHrNOC5cJ8vsnDz99mz9Q",
@@ -72,6 +73,4 @@ sep_urls = [
     "https://mp.weixin.qq.com/s/_I8lBVQcZvXazPFi2ijssA",
     "https://mp.weixin.qq.com/s/-NezVxgIKAef-Acs9eZGDw"
 ]
-
-
 
